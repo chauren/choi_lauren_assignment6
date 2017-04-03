@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pi Pizza Order Form</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <nav class="navbar-fixed-top">
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><input type="text" id="total" readonly value="0.00"></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Pi Pizza</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Got Pizza?</h1>
+        <p class="lead">Our traditional family recipe makes for the best pizza! Customize your order exactly to your taste and we'll have your pizza ready in 10 minutes</p>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-12">
+          <h3>Delivery Location</h3>
+          <form id="pizza-form">
+              Name: <input type="text" id="cust-name"> <br>
+              <span id="name-span"></span><br>
+              Address Type: <select name="address-type" id="address-type">
+                                <option value="house">House</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="business">Business</option>
+                                <option value="campus">Campus</option>
+                                <option value="hotel">Hotel</option>
+                                <option value="dorm">Dorm</option>
+                                <option id="other-address" value="other">Other</option>
+                            </select> <br>
+              <input class="hide" id="other-address-input" type="text" placeholder="Specify Other Address Type"> <br>
+              Street Address: <input type="text" id="street-address"> <br>
+              <span id="street-address-span"></span><br>
+              Apartment, Suite, or Room Number: <input type="text" id="optional-number"> <br>
+              <span></span><br>
+              City: <input type="text" id="city"> <br>
+              <span id="city-span"></span><br>
+              State: <input type="text" id="state"> <br>
+              <span id="state-span"></span><br>
+              Zip Code: <input type="text" id="zipcode"> <br>
+              <span id="zipcode-span"></span><br>
+              Phone Number: <input type="text" id="phone"> <br>
+              <span id="phone-span"></span><br>
+              Email: <input type="email" id="email"> <br>
+              <span id="email-span"></span><br>
+              <button type="button" id="next-button">Next</button>
+              <br><br>
+              <div id="build" class="hide">
+                <h3>Build Your Order</h3>
+                <h4>Choose your Dough Type: </h4>
+                <div id="dough-type">
+                    <input type="radio" name="dough-type" value="hand-tossed" id="hand-tossed"><label for="hand-tossed">Hand Tossed</label> <br>
+                    <input type="radio" name="dough-type" value="thin-crust" id="thin-crust"><label for="thin-crust">Thin Crust</label> <br>
+                    <input type="radio" name="dough-type" value="new-york" id="new-york"><label for="new-york">New York Style</label> <br>
+                    <input type="radio" name="dough-type" value="gluten-free" id="gluten-free"><label for="gluten-free">Gluten Free</label> <br>
+                </div>
+                <h4>Select Size:</h4>
+                <select name="hand-tossed-price" id="hand-tossed-price" class="hide">
+                    <option value="" id="hand-tossed-select">Select Size</option>
+                    <option value="9.99" id="hand-tossed-small">Small ($9.99)</option>
+                    <option value="12.99" id="hand-tossed-medium">Medium ($12.99)</option>
+                    <option value="14.99" id="hand-tossed-large">Large ($14.99)</option>
+                </select>
+                <select name="thin-crust-price" id="thin-crust-price" class="hide">
+                    <option value="" id="thin-crust-select">Select Size</option>
+                    <option value="11.99" id="thin-crust-medium">Medium ($11.99)</option>
+                    <option value="13.99" id="thin-crust-large">Large ($13.99)</option>
+                </select>
+                <select name="new-york-price" id="new-york-price" class="hide">
+                    <option value="" id="new-york-select">Select Size</option>
+                    <option value="16.99" id="new-york-large">Large ($16.99)</option>
+                    <option value="19.99" id="new-york-extra-large">Extra Large ($19.99)</option>
+                </select>
+                <select name="gluten-free-price" id="gluten-free-price" class="hide">
+                    <option value="" id="gluten-free-select">Select Size</option>
+                    <option value="10.99" id="gluten-free-small">Small ($10.99)</option>
+                </select>
+                <br>
+                <h4>Add Your Cheese:</h4>
+                <select name="cheese-options" id="cheese-options">
+                    <option value="0.00" id="cheese-light">Light (no charge)</option>
+                    <option value="0.00" id="cheese-normal" selected>Normal (no charge)</option>
+                    <option value="2.99" id="cheese-extra">Extra (+$2.99)</option>
+                    <option value="3.99" id="cheese-double">Double (+$3.99)</option>
+                </select> <br>
+                <h4>Add Your Sauce:</h4>
+                <select name="sauce-options" id="sauce-options">
+                    <option value="0.00" id="cheese-light">Regular Tomato (no charge)</option>
+                    <option value="0.99" id="cheese-normal">Hearty Tomato (+$0.99)</option>
+                    <option value="1.99" id="cheese-extra">BBQ Sauce (+$1.99)</option>
+                </select> <br>
+                <h4>Add Your Toppings (+$0.99 each)</h4>
+                <div id="toppings-list">
+                    <input type="checkbox" name="toppings" id="pepperoni" value="0.99"><label for="pepperoni">Pepperoni</label> <br>
+                    <input type="checkbox" name="toppings" id="sausage" value="0.99"><label for="sausage">Sausage</label> <br>
+                    <input type="checkbox" name="toppings" id="ham" value="0.99"><label for="ham">Ham</label><br>
+                    <input type="checkbox" name="toppings" id="bacon" value="0.99"><label for="bacon">Bacon</label><br>
+                    <input type="checkbox" name="toppings" id="salami" value="0.99"><label for="salami">Salami</label><br>
+                    <input type="checkbox" name="toppings" id="peppers" value="0.99"><label for="peppers">Peppers</label><br>
+                    <input type="checkbox" name="toppings" id="olives" value="0.99"><label for="olives">Olives</label><br>
+                    <input type="checkbox" name="toppings" id="jalapenos" value="0.99"><label for="jalapenos">Jalapenos</label><br>
+                    <input type="checkbox" name="toppings" id="mushrooms" value="0.99"><label for="mushrooms">Mushrooms</label><br>
+                    <input type="checkbox" name="toppings" id="pineapple" value="0.99"><label for="pineapple">Pineapple</label><br>
+                    <input type="checkbox" name="toppings" id="onions" value="0.99"><label for="onions">Onions</label><br><br>
+                    <button type="button" id="submit-pizza">Finished Building Pizza</button>
+                </div>
+              </div>
+              <br>
+              <div id="billing-info" class="hide">
+                <h3>Billing Information</h3>
+                <h4>Billing Address:</h4>
+                <input type="checkbox" id="same-billing-info"><label for="same-billing-info">Same as delivery information</label><br><br>
+                Name: <input type="text" id="billing-cust-name"> <br>
+                <span id="billing-name-span"></span><br>
+                Street Address: <input type="text" id="billing-street-address"> <br>
+                <span id="billing-street-address-span"></span><br>
+                Apartment, Suite, or Room Number: <input type="text" id="billing-optional-number"> <br>
+                <span></span><br>
+                City: <input type="text" id="billing-city"><br>
+                <span id="billing-city-span"></span><br>
+                State: <input type="text" id="billing-state"><br>
+                <span id="billing-state-span"></span><br>
+                Zip Code: <input type="text" id="billing-zipcode"><br>
+                <span id="billing-zipcode-span"></span><br>
+                Phone Number: <input type="text" id="billing-phone"><br>
+                <span id="billing-phone-span"></span><br>
+                Email: <input type="email" id="billing-email"><br>
+                <span id="billing-email-span"></span><br>
+                
+                <h4 id="credit-card-information">Credit Card Information:</h4>
+                Credit Card Type: 
+                <select name="credit-card-type" id="credit-card-type">
+                    <option value="Visa" id="visa">Visa</option>
+                    <option value="MasterCard" id="mastercard">MasterCard</option>
+                    <option value="American Express" id="americanexpress">American Express</option>
+                </select><br>
+                <span id="credit-card-type"></span><br>
+                Credit Card Number: <input type="text" id="credit-card"><br>
+                <span id="credit-card-span"></span><br>
+                CVC Number: <input type="text" id="cvc"><br>
+                <span id="cvc-span"></span><br>
+                Expiration:
+                <select name="expiration-year" id="expiration-year">
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                </select> 
+                <select name="expiration-month" id="expiration-month">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <br><br>
+                <button type="button" id="submit-order">Submit Order</button>
+              </div>
+          </form>
+        </div>
+
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2017 Pi Pizza, Inc.</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/script.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
